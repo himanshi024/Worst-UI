@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glitches and Giggles | The Worst UI/UX Challenge by GDG</title>
+  <meta name="description" content="Forget perfect pixels. Welcome to Glitches and Giggles: The Worst UI/UX Challenge presented by Google Developer Groups. 90 minutes. Zero design dignity. Infinite possibilities.">
+  <meta name="keywords" content="GDG, Google Developer Groups, Worst UI UX Challenge, Glitches and Giggles, Design Hackathon, YMCA Faridabad">
+  <meta name="theme-color" content="#09090d">
+  
+  <!-- Favicon SVG -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="cyber-theme" id="body-root">
+  <!-- Scanlines & Noise Background Overlay -->
+  <div class="screen-scanlines" aria-hidden="true"></div>
+  <div class="screen-vignette" aria-hidden="true"></div>
+
+  <!-- Announcement Marquee -->
+  <div class="alert-ticker" role="region" aria-label="System Alert">
+    <div class="ticker-track">
+      <span class="ticker-item">🚨 ⚠️ SYSTEM ALERT: YOUR DESIGN SKILLS ARE ABOUT TO BE QUESTIONED! ⚠️</span>
+      <span class="ticker-divider">•</span>
+      <span class="ticker-item">💀 PERFECT DESIGN IS OVERRATED. LET'S MAKE SOMETHING TERRIBLE!</span>
+      <span class="ticker-divider">•</span>
+      <span class="ticker-item">⚡ 90 MINUTES • 1–2 MEMBERS • GENERATIVE AI FULLY ALLOWED 🤖</span>
+      <span class="ticker-divider">•</span>
+      <span class="ticker-item">🏆 CERTIFICATES BY GOOGLE DEVELOPER GROUPS + EXCITING GOODIES</span>
+      <span class="ticker-divider">•</span>
+      <span class="ticker-item">🚨 ⚠️ SYSTEM ALERT: YOUR DESIGN SKILLS ARE ABOUT TO BE QUESTIONED! ⚠️</span>
+      <span class="ticker-divider">•</span>
+      <span class="ticker-item">💀 PERFECT DESIGN IS OVERRATED. LET'S MAKE SOMETHING TERRIBLE!</span>
+    </div>
+  </div>
+
+  <!-- Main Navbar -->
+  <header class="site-header" id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="brand-link" id="brand-logo">
+        <div class="brand-badge">
+          <span class="brand-dot"></span>
+          <span class="brand-text">GDG</span>
+        </div>
+        <span class="brand-sep">/</span>
+        <span class="brand-event">GLITCHES & GIGGLES</span>
+      </a>
+
+      <nav class="nav-links" id="primary-nav">
+        <a href="#about" class="nav-item">About</a>
+        <a href="#mission" class="nav-item">Mission</a>
+        <a href="#playground" class="nav-item">Chaos Lab</a>
+        <a href="#schedule" class="nav-item">Venue</a>
+        <button class="nav-item nav-btn-outline" id="nav-brief-btn" onclick="openModal('brief-modal')">
+          <span class="btn-icon">📋</span> Instructions
+        </button>
+        <button class="nav-item nav-btn-outline" id="nav-faq-btn" onclick="openModal('faq-modal')">
+          <span class="btn-icon">❓</span> FAQs
+        </button>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Audio Synth Toggle -->
+        <button class="icon-toggle-btn" id="sfx-toggle" title="Toggle Sound FX" aria-label="Toggle Sound FX">
+          <span id="sfx-icon">🔊</span>
+        </button>
+
+        <!-- Chaos Mode Switch -->
+        <button class="chaos-pill" id="chaos-mode-toggle" title="Toggle Chaos Mode">
+          <span class="chaos-dot"></span>
+          <span class="chaos-label">CHAOS MODE: <strong id="chaos-status">OFF</strong></span>
+        </button>
+
+        <!-- Primary Register CTA -->
+        <a href="https://forms.gle/WNKL94UAcj32yx446" target="_blank" rel="noopener noreferrer" class="btn-cta-nav" id="nav-register-btn">
+          <span>REGISTER NOW</span>
+          <svg class="arrow-svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+        </a>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-btn" id="mobile-toggle" aria-label="Toggle navigation menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-drawer" id="mobile-drawer">
+      <a href="#about" class="mobile-item" onclick="closeMobileMenu()">About</a>
+      <a href="#mission" class="mobile-item" onclick="closeMobileMenu()">Mission & Rules</a>
+      <a href="#playground" class="mobile-item" onclick="closeMobileMenu()">Chaos Lab</a>
+      <a href="#schedule" class="mobile-item" onclick="closeMobileMenu()">Venue & Details</a>
+      <button class="mobile-item" onclick="closeMobileMenu(); openModal('brief-modal');">
+        📋 Event Brief & Instructions
+      </button>
+      <button class="mobile-item" onclick="closeMobileMenu(); openModal('faq-modal');">
+        ❓ Frequently Asked Questions
+      </button>
+      <a href="https://forms.gle/WNKL94UAcj32yx446" target="_blank" rel="noopener noreferrer" class="mobile-item highlight" onclick="closeMobileMenu()">
+        🚀 Register on Google Form ↗
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="hero">
+      <div class="hero-glow-blob blob-1"></div>
+      <div class="hero-glow-blob blob-2"></div>
+
+      <div class="container hero-content">
+        <!-- Floating Quick Badges -->
+        <div class="hero-top-meta">
+          <div class="badge-presented">
+            <span class="gdg-logo-pill">
+              <span class="gdg-dot blue"></span>
+              <span class="gdg-dot red"></span>
+              <span class="gdg-dot yellow"></span>
+              <span class="gdg-dot green"></span>
+            </span>
+            <span>PRESENTED BY <strong>GOOGLE DEVELOPER GROUPS</strong></span>
+          </div>
+          <div class="countdown-badge" id="countdown-timer">
+            <span class="timer-label">COUNTDOWN:</span>
+            <span class="timer-values" id="countdown-display">CALCULATING...</span>
+          </div>
+        </div>
+
+        <!-- Central Card Inspired Directly from Reference Image -->
+        <div class="hero-card-wrapper">
+          <div class="hero-card" id="hero-card" data-tilt>
+            <!-- Card Header Meta -->
+            <div class="card-top-bar">
+              <div class="card-brand-tag">
+                <span class="tag-accent">GDG</span> • EVENT EXPERIENCE
+              </div>
+              <div class="card-chaos-badge" id="card-chaos-indicator">
+                <span class="pulsing-red-dot"></span>
+                <span>CHAOS MODE</span>
+              </div>
+              <button class="bookmark-btn" id="bookmark-btn" aria-label="Bookmark Event" title="Save Event">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Glitch Artwork Banner -->
+            <div class="glitch-banner-container">
+              <img src="assets/images/glitch_hero.jpg" alt="Glitches and Giggles Glitch Artwork" class="glitch-banner-img" id="hero-banner-img">
+              <div class="banner-glitch-layer banner-r"></div>
+              <div class="banner-glitch-layer banner-b"></div>
+              <div class="banner-scanlines"></div>
+              <div class="banner-corner-tag">REC_00:90:00 [LIVE]</div>
+              <div class="banner-watermark">GDG_CHAOS_2026</div>
+            </div>
+
+            <!-- Card Body Content -->
+            <div class="card-body">
+              <h1 class="card-title glitch-text" data-text="GLITCHESAND GIGGLES.">
+                GLITCHESAND GIGGLES.
+              </h1>
+              
+              <div class="card-subtitle-box">
+                <span class="card-subtitle">THE WORST UI/UX CHALLENGE</span>
+                <span class="subtitle-badge">OFFICIAL GDG SPRINT</span>
+              </div>
+
+              <p class="card-tagline">
+                90 minutes. Zero design dignity. Infinite possibilities.
+              </p>
+
+              <!-- Stats / Event Specs Matrix -->
+              <div class="card-meta-grid">
+                <div class="meta-cell">
+                  <span class="meta-label">DATE</span>
+                  <span class="meta-val">2 NOV 2026</span>
+                </div>
+                <div class="meta-cell">
+                  <span class="meta-label">TEAM SIZE</span>
+                  <span class="meta-val">1–2 MEMBERS</span>
+                </div>
+                <div class="meta-cell">
+                  <span class="meta-label">DURATION</span>
+                  <span class="meta-val">90 MINUTES</span>
+                </div>
+                <div class="meta-cell">
+                  <span class="meta-label">GEN AI</span>
+                  <span class="meta-val highlight-lime">FULLY ALLOWED</span>
+                </div>
+              </div>
+
+              <!-- Main Hero Action Buttons -->
+              <div class="card-actions">
+                <a href="https://forms.gle/WNKL94UAcj32yx446" target="_blank" rel="noopener noreferrer" class="btn-hero-primary" id="btn-enter-chaos">
+                  <span class="btn-text">ENTER THE CHAOS</span>
+                  <span class="btn-arrow">↗</span>
+                </a>
+
+                <div class="secondary-btn-group">
+                  <button class="btn-hero-secondary" onclick="openModal('brief-modal')" id="btn-hero-instructions">
+                    <span class="btn-icon">📜</span>
+                    <span>Event Brief & Rules</span>
+                  </button>
+                  <button class="btn-hero-secondary" onclick="openModal('faq-modal')" id="btn-hero-faqs">
+                    <span class="btn-icon">❓</span>
+                    <span>FAQs & Info</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Card Micro-Footer -->
+              <div class="card-micro-footer">
+                <span class="venue-inline">
+                  📍 Computer Centre, J.C. Bose UST, YMCA Faridabad
+                </span>
+                <span class="status-free">100% FREE ENTRY</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Jump Pillars below Hero -->
+        <div class="hero-quick-features">
+          <div class="quick-pill" onclick="openModal('brief-modal')">
+            <span class="pill-icon">⚡</span>
+            <div class="pill-text">
+              <strong>90-Min Sprint</strong>
+              <small>Speed, comedy & chaos</small>
+            </div>
+          </div>
+          <div class="quick-pill" onclick="openModal('brief-modal')">
+            <span class="pill-icon">🤖</span>
+            <div class="pill-text">
+              <strong>GenAI Unlocked</strong>
+              <small>Use Midjourney, ChatGPT & more</small>
+            </div>
+          </div>
+          <div class="quick-pill" onclick="openModal('brief-modal')">
+            <span class="pill-icon">⚖️</span>
+            <div class="pill-text">
+              <strong>Peer Judging</strong>
+              <small>Score each other's disasters</small>
+            </div>
+          </div>
+          <div class="quick-pill" onclick="openModal('brief-modal')">
+            <span class="pill-icon">🏆</span>
+            <div class="pill-text">
+              <strong>GDG Certificates</strong>
+              <small>Official prizes & bragging rights</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PHILOSOPHY / ABOUT SECTION -->
+    <section class="section about-section" id="about">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">🤔 THE PARADOX</span>
+          <h2 class="section-title">WHAT IF BAD DESIGN WAS THE WHOLE POINT? 💀</h2>
+          <p class="section-desc">
+            Forget perfect pixels. Forget seamless experiences. For once, <strong>BAD DESIGN IS GOOD DESIGN</strong>.
+          </p>
+        </div>
+
+        <div class="manifesto-grid">
+          <div class="manifesto-card glass-panel">
+            <div class="manifesto-icon">🎭</div>
+            <h3>Where Errors Earn Trophies</h3>
+            <p>Welcome to an alternate universe where broken buttons steal the spotlight, pop-ups never take no for an answer, and navigation purposefully directs you to nowhere.</p>
+            <div class="card-quote">"Blunders wear crowns, and misclicks become masterstrokes."</div>
+          </div>
+
+          <div class="manifesto-card glass-panel featured-manifesto">
+            <div class="manifesto-icon">🧠</div>
+            <h3>Your Core Mission</h3>
+            <p>Craft a digital interface so hilariously confusing, frustrating, and downright chaotic that users won't know whether to click, scroll, rage-quit, or burst into laughter.</p>
+            <div class="card-tag-row">
+              <span class="micro-badge">Comic Genius</span>
+              <span class="micro-badge">Psychological Warfare</span>
+              <span class="micro-badge">Creative UX</span>
+            </div>
+          </div>
+
+          <div class="manifesto-card glass-panel">
+            <div class="manifesto-icon">🌱</div>
+            <h3>New To UI/UX? Perfect!</h3>
+            <p>Experience isn't required when the goal is breaking all established rules! Whether you're a seasoned designer or someone who opened Figma 5 minutes ago, you are celebrated here.</p>
+            <div class="card-quote">"Guidance and laughs provided whenever needed."</div>
+          </div>
+        </div>
+
+        <div class="quote-banner">
+          <div class="quote-text">
+            “Great design solves problems.<br>
+            <span class="quote-highlight">Great bad design creates legendary ones.”</span>
+          </div>
+          <div class="quote-cta">
+            <a href="https://forms.gle/WNKL94UAcj32yx446" target="_blank" rel="noopener noreferrer" class="btn-neon-compact">
+              REGISTER YOUR TEAM ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHAOS LAB / INTERACTIVE BAD UX PLAYGROUND -->
+    <section class="section playground-section" id="playground">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">🕹️ INSPIRATION LAB</span>
+          <h2 class="section-title">THE HALL OF INFAMY: BAD UX SIMULATOR</h2>
+          <p class="section-desc">
+            Get warmed up for the challenge. Try interacting with these intentional design atrocities!
+          </p>
+        </div>
+
+        <div class="playground-grid">
+          <!-- Widget 1: The Evasive Button -->
+          <div class="bad-ui-widget glass-panel">
+            <div class="widget-header">
+              <span class="widget-title">Atrocity #1: The Cowardly Button</span>
+              <span class="widget-badge">Hover Hazard</span>
+            </div>
+            <p class="widget-instruction">Try clicking this button to claim your $1,000,000 prize.</p>
+            <div class="evasive-arena" id="evasive-arena">
+              <button class="evasive-btn" id="evasive-btn">CLAIM PRIZE 💰</button>
+            </div>
+            <div class="widget-feedback" id="evasive-feedback">Tries: 0 | Catches: 0</div>
+          </div>
+
+          <!-- Widget 2: The Catastrophic Slider -->
+          <div class="bad-ui-widget glass-panel">
+            <div class="widget-header">
+              <span class="widget-title">Atrocity #2: Fine-Tuned Volume</span>
+              <span class="widget-badge">Precision Torture</span>
+            </div>
+            <p class="widget-instruction">Select your preferred listening volume exactly to 69%.</p>
+            <div class="slider-box">
+              <input type="range" min="0" max="100" value="12" class="chaos-slider" id="chaos-slider">
+              <div class="slider-readout">Volume: <span id="slider-val" class="lime-text">12%</span> (Approx: <span id="slider-approx">Whisper</span>)</div>
+              <button class="btn-micro" id="scramble-slider-btn">🎲 Randomize Sensitivity</button>
+            </div>
+          </div>
+
+          <!-- Widget 3: Impossible Password Validator -->
+          <div class="bad-ui-widget glass-panel">
+            <div class="widget-header">
+              <span class="widget-title">Atrocity #3: Reasonable Password</span>
+              <span class="widget-badge">Security 9000</span>
+            </div>
+            <p class="widget-instruction">Enter a secure password following standard industry rules.</p>
+            <div class="password-box">
+              <input type="text" placeholder="Type password here..." class="chaos-input" id="chaos-pwd-input">
+              <ul class="pwd-requirements" id="pwd-reqs">
+                <li id="req-roman" class="bad">❌ Must contain a Roman numeral (e.g. IV, XII)</li>
+                <li id="req-food" class="bad">❌ Must contain the name of an Indian sweet (e.g. gulabjamun)</li>
+                <li id="req-length" class="bad">❌ Must be exactly a prime number of characters</li>
+                <li id="req-math" class="bad">❌ Must contain digits that sum up to 42</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Widget 4: Existential CAPTCHA -->
+          <div class="bad-ui-widget glass-panel">
+            <div class="widget-header">
+              <span class="widget-title">Atrocity #4: Philosophical CAPTCHA</span>
+              <span class="widget-badge">Bot Defense</span>
+            </div>
+            <p class="widget-instruction">Select all tiles depicting: <em>"A fleeting moment of optimism"</em></p>
+            <div class="captcha-grid" id="captcha-grid">
+              <button class="captcha-tile" data-idx="1">404 Page</button>
+              <button class="captcha-tile" data-idx="2">Low Battery 1%</button>
+              <button class="captcha-tile" data-idx="3">Unsaved Word Doc</button>
+              <button class="captcha-tile" data-idx="4">Merge Conflict</button>
+            </div>
+            <button class="btn-micro" id="captcha-verify-btn">I AM NOT A HUMAN</button>
+            <div class="widget-feedback" id="captcha-feedback">Verification: Pending existential dread</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MISSION & RULES / INSTRUCTIONS IN-PAGE SECTION -->
+    <section class="section mission-section" id="mission">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">📜 EVENT BRIEF</span>
+          <h2 class="section-title">THE RULEBOOK OF BEAUTIFUL DISASTER</h2>
+          <p class="section-desc">
+            Everything you need to conquer Glitches and Giggles. Full transparency, pure comedy.
+          </p>
+        </div>
+
+        <div class="rules-timeline">
+          <div class="timeline-step">
+            <div class="step-num">01</div>
+            <div class="step-content glass-panel">
+              <div class="step-badge">REGISTRATION & TEAMS</div>
+              <h3>Squad Up or Go Solo</h3>
+              <p>Form a team of <strong>1 to 2 members</strong>. Solo warriors and dynamic duos are both welcome. Fill out the official registration form to reserve your spot.</p>
+              <div class="step-detail">
+                <span>👥 Team Size: 1–2 Members</span>
+                <span>📅 Closes: Prior to Nov 2</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-step">
+            <div class="step-num">02</div>
+            <div class="step-content glass-panel">
+              <div class="step-badge">THE 90-MINUTE SPRINT</div>
+              <h3>Release The Mayhem</h3>
+              <p>You have exactly <strong>90 minutes</strong> to design the most hilariously counter-intuitive, bewildering, or delightfully frustrating interface conceivable.</p>
+              <div class="step-detail">
+                <span>🤖 GenAI: 100% Allowed</span>
+                <span>🎨 Platforms: Figma, Web, Slides, Any</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-step">
+            <div class="step-num">03</div>
+            <div class="step-content glass-panel">
+              <div class="step-badge">TRANSPARENT JUDGING</div>
+              <h3>Peer Review Tribunal</h3>
+              <p>Fair play is paramount. You and your fellow participants will test, rate, and critique each other's abominations. May the best worst design triumph!</p>
+              <div class="step-detail">
+                <span>⚖️ Democratic Peer Scoring</span>
+                <span>🎭 Laughter is Measurable</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-step">
+            <div class="step-num">04</div>
+            <div class="step-content glass-panel">
+              <div class="step-badge">THE CORONATION</div>
+              <h3>Prizes, Goodies & Honors</h3>
+              <p>Walk away with official <strong>Google Developer Groups Certificates</strong>, exclusive swag goodies, and eternal glory in the Bad UI Hall of Fame.</p>
+              <div class="step-detail">
+                <span>🎖️ GDG Certificates</span>
+                <span>🎁 Exciting Goodies</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Buttons for Event Brief & Form -->
+        <div class="brief-actions-bar">
+          <button class="btn-brief-large" onclick="openModal('brief-modal')">
+            <span class="icon">📖</span>
+            <div class="text">
+              <strong>OPEN DETAILED EVENT BRIEF & CRITERIA</strong>
+              <small>Click to view scoring rubric, forbidden practices & tips</small>
+            </div>
+            <span class="arrow">→</span>
+          </button>
+
+          <a href="https://forms.gle/WNKL94UAcj32yx446" target="_blank" rel="noopener noreferrer" class="btn-register-glow">
+            <span class="icon">🚀</span>
+            <div class="text">
+              <strong>OFFICIAL GOOGLE FORM REGISTRATION</strong>
+              <small>forms.gle/WNKL94UAcj32yx446</small>
+            </div>
+            <span class="arrow">↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRIZES & PERKS SECTION -->
+    <section class="section perks-section" id="perks">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">🏆 THE BOUNTY</span>
+          <h2 class="section-title">WHAT'S IN IT FOR YOU?</h2>
+          <p class="section-desc">Zero dignity lost, endless loot gained.</p>
+        </div>
+
+        <div class="perks-grid">
+          <div class="perk-card glass-panel">
+            <div class="perk-badge-icon">🎁</div>
+            <h3>Exciting Prizes & Goodies</h3>
+            <p>Curated tech merch, trophy kits, and mystery gear for the most brilliantly dreadful interfaces.</p>
+          </div>
+
+          <div class="perk-card glass-panel">
+            <div class="perk-badge-icon">🎖️</div>
+            <h3>Official GDG Certificates</h3>
+            <p>Certified proof by Google Developer Groups that you understand UX so well, you can intentionally break it with style.</p>
+          </div>
+
+          <div class="perk-card glass-panel">
+            <div class="perk-badge-icon">🔥</div>
+            <h3>Humour & Design Thinking</h3>
+            <p>Reverse-engineering usability is one of the highest forms of product understanding. Level up your design portfolio with satire.</p>
+          </div>
+
+          <div class="perk-card glass-panel">
+            <div class="perk-badge-icon">🌐</div>
+            <h3>Community & Networking</h3>
+            <p>Meet passionate developers, designers, and innovators from J.C. Bose UST YMCA and the wider GDG ecosystem.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCHEDULE & VENUE SECTION -->
+    <section class="section schedule-section" id="schedule">
+      <div class="container">
+        <div class="venue-card glass-panel">
+          <div class="venue-info">
+            <span class="section-tag">📍 VENUE & LOGISTICS</span>
+            <h2 class="venue-title">WHERE & WHEN DISASTER STRIKES</h2>
+            
+            <div class="venue-meta-list">
+              <div class="venue-meta-item">
+                <span class="v-icon">📅</span>
+                <div>
+                  <strong>Date</strong>
+                  <p>2 November 2026</p>
+                </div>
+              </div>
+
+              <div class="venue-meta-item">
+                <span class="v-icon">📍</span>
+                <div>
+                  <strong>Location</strong>
+                  <p>Computer Centre, J.C. Bose University of Science and Technology, YMCA, Faridabad, Haryana</p>
+                </div>
+              </div>
+
+              <div class="venue-meta-item">
+                <span class="v-icon">👥</span>
+                <div>
+                  <strong>Eligibility</strong>
+                  <p>Open to all college students, tech enthusiasts, and design rebels (1–2 per team)</p>
+                </div>
+              </div>
+
+              <div class="venue-meta-item">
+                <span class="v-icon">💻</span>
+                <div>
+                  <strong>What to Bring</strong>
+                  <p>Your laptop, charger, mouse (which you will regret having), and wicked creativity</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="venue-action-row">
+              <a href="https://forms.gle/WNKL94UAcj32yx446" target="_blank" rel="noopener noreferrer" class="btn-hero-primary">
+                RESERVE YOUR SEAT VIA GOOGLE FORM ↗
+              </a>
+              <button class="btn-hero-secondary" onclick="openModal('faq-modal')">
+                Read Venue FAQs
+              </button>
+            </div>
+          </div>
+
+          <div class="venue-visual">
+            <div class="venue-map-frame">
+              <div class="map-overlay-card">
+                <div class="radar-ping"></div>
+                <div class="loc-pin">📍</div>
+                <strong>Computer Centre, J.C. Bose UST</strong>
+                <p>YMCA Faridabad • Delhi NCR</p>
+                <a href="https://maps.google.com/?q=J.C.+Bose+University+of+Science+and+Technology+YMCA+Faridabad" target="_blank" rel="noopener noreferrer" class="map-link">
+                  Open in Google Maps ↗
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA HEROIC CALLOUT -->
+    <section class="cta-banner-section">
+      <div class="container">
+        <div class="final-cta-card">
+          <div class="cta-glitch-border"></div>
+          <span class="cta-super-badge">🔥 THINK YOU CAN DESIGN A DISASTER?</span>
+          <h2 class="cta-headline">COME MAKE THE INTERNET REGRET GIVING YOU A MOUSE.</h2>
+          <p class="cta-sub">Registration is completely free. Spots in the Computer Centre are limited.</p>
+          
+          <div class="cta-btn-cluster">
+            <a href="https://forms.gle/WNKL94UAcj32yx446" target="_blank" rel="noopener noreferrer" class="btn-giant-cta">
+              <span>REGISTER NOW (GOOGLE FORM)</span>
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+            </a>
+            <button class="btn-giant-ghost" onclick="openModal('brief-modal')">
+              <span>READ FULL INSTRUCTIONS</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div class="footer-left">
+        <div class="footer-logo">
+          <span class="gdg-dot blue"></span>
+          <span class="gdg-dot red"></span>
+          <span class="gdg-dot yellow"></span>
+          <span class="gdg-dot green"></span>
+          <strong>Google Developer Groups</strong>
+        </div>
+        <p class="footer-copy">Glitches and Giggles • The Worst UI/UX Challenge 2026.<br>Organized with humour, chaos, and love by GDG.</p>
+      </div>
+
+      <div class="footer-links">
+        <div class="link-col">
+          <strong>Quick Links</strong>
+          <a href="#hero">Back to Top</a>
+          <button onclick="openModal('brief-modal')" class="link-btn">Instructions Brief</button>
+          <button onclick="openModal('faq-modal')" class="link-btn">FAQs</button>
+          <a href="https://forms.gle/WNKL94UAcj32yx446" target="_blank" rel="noopener noreferrer">Register Form ↗</a>
+        </div>
+        <div class="link-col">
+          <strong>Event Hub</strong>
+          <span>J.C. Bose UST, YMCA</span>
+          <span>Computer Centre</span>
+          <span>2 November 2026</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom container">
+      <span>© 2026 Google Developer Groups. All bugs, glitches and questionable design choices are purely intentional.</span>
+      <span class="disclaimer">No designers were physically harmed in the making of this challenge.</span>
+    </div>
+  </footer>
+
+  <!-- STICKY BOTTOM ACTION DOCK (Visible on scroll & mobile) -->
+  <aside class="sticky-dock" id="sticky-dock" aria-label="Quick Actions">
+    <div class="dock-container">
+      <div class="dock-left">
+        <span class="dock-pill">⚡ GDG SPRINT</span>
+        <span class="dock-title">Glitches & Giggles</span>
+      </div>
+      <div class="dock-buttons">
+        <button class="dock-btn" onclick="openModal('brief-modal')" title="Event Brief">
+          <span>📋</span> <span class="hide-sm">Instructions</span>
+        </button>
+        <button class="dock-btn" onclick="openModal('faq-modal')" title="Frequently Asked Questions">
+          <span>❓</span> <span class="hide-sm">FAQs</span>
+        </button>
+        <a href="https://forms.gle/WNKL94UAcj32yx446" target="_blank" rel="noopener noreferrer" class="dock-btn dock-btn-primary">
+          <span>REGISTER ↗</span>
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MODAL 1: EVENT BRIEF & INSTRUCTIONS -->
+  <div class="modal-backdrop" id="brief-modal" role="dialog" aria-modal="true" aria-labelledby="brief-modal-title">
+    <div class="modal-card glass-panel">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <span class="modal-tag">OFFICIAL GDG EVENT BRIEF</span>
+          <h2 id="brief-modal-title">Glitches and Giggles: Mission Directive</h2>
+        </div>
+        <button class="modal-close-btn" onclick="closeModal('brief-modal')" aria-label="Close modal">✕</button>
+      </div>
+
+      <div class="modal-body custom-scrollbar">
+        <div class="brief-alert-box">
+          <span class="alert-icon">⚠️</span>
+          <div>
+            <strong>THE GOLDEN RULE:</strong> Normal UI/UX prioritizes ease, accessibility, and speed. Here, your goal is to make a user laugh, groan, and question reality—while still crafting an ingenious, functional disaster!
+          </div>
+        </div>
+
+        <section class="modal-section">
+          <h3>🎯 The 4 Judging Dimensions (Peer Scored)</h3>
+          <div class="rubric-grid">
+            <div class="rubric-card">
+              <span class="rubric-num">1</span>
+              <h4>Comic Genius & Wit (30%)</h4>
+              <p>How funny, witty, and clever is the concept? Does it parody annoying modern software trends?</p>
+            </div>
+            <div class="rubric-card">
+              <span class="rubric-num">2</span>
+              <h4>Creative Frustration (30%)</h4>
+              <p>Does it invent brand new ways to baffle the user? Unhinged sliders, evasive buttons, upside-down scroll!</p>
+            </div>
+            <div class="rubric-card">
+              <span class="rubric-num">3</span>
+              <h4>Cohesion & Polish (20%)</h4>
+              <p>Is the disaster well-crafted? A purposefully bad design looks vastly different from a lazy draft.</p>
+            </div>
+            <div class="rubric-card">
+              <span class="rubric-num">4</span>
+              <h4>AI & Tool Mastery (20%)</h4>
+              <p>Innovative prompting and creative exploitation of AI tools to generate absurd assets and copy.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="modal-section">
+          <h3>⏱️ Challenge Schedule (90-Minute Breakdown)</h3>
+          <ul class="schedule-list">
+            <li><strong>00:00 – 00:15:</strong> Opening briefing & topic reveal by GDG organizers.</li>
+            <li><strong>00:15 – 01:45 (90 Min):</strong> The Chaos Sprint! Ideate, build in Figma/Code/Canva, generate AI assets.</li>
+            <li><strong>01:45 – 02:15:</strong> Interactive Peer Showcase & Mutual Torment Testing.</li>
+            <li><strong>02:15 – 02:30:</strong> Peer Score Tally, Crowning of Champions & Goodies distribution.</li>
+          </ul>
+        </section>
+
+        <section class="modal-section">
+          <h3>🛠️ Permitted Tools & Guidelines</h3>
+          <div class="tools-tags">
+            <span class="t-tag">Figma</span>
+            <span class="t-tag">Canva</span>
+            <span class="t-tag">Pen & Paper</span>
+            <span class="t-tag">HTML / CSS / JS</span>
+            <span class="t-tag">Midjourney / Imagen</span>
+            <span class="t-tag">ChatGPT / Gemini / Claude</span>
+            <span class="t-tag">Photoshop</span>
+            <span class="t-tag">PowerPoint / Slides</span>
+          </div>
+          <p class="tool-note">Any medium is permitted as long as peers can interact with or view your submission!</p>
+        </section>
+
+        <div class="modal-cta-box">
+          <div>
+            <strong>Ready to commit digital atrocities?</strong>
+            <p>Team slots are filled on a first-come, first-served basis.</p>
+          </div>
+          <a href="https://forms.gle/WNKL94UAcj32yx446" target="_blank" rel="noopener noreferrer" class="btn-hero-primary">
+            REGISTER VIA GOOGLE FORM ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 2: FAQs ACCORDION -->
+  <div class="modal-backdrop" id="faq-modal" role="dialog" aria-modal="true" aria-labelledby="faq-modal-title">
+    <div class="modal-card glass-panel">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <span class="modal-tag">GOT QUESTIONS?</span>
+          <h2 id="faq-modal-title">Frequently Asked Questions</h2>
+        </div>
+        <button class="modal-close-btn" onclick="closeModal('faq-modal')" aria-label="Close modal">✕</button>
+      </div>
+
+      <div class="modal-body custom-scrollbar">
+        <div class="faq-accordion" id="faq-accordion">
+          
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="true">
+              <span>Who can participate in Glitches and Giggles?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Anyone! Whether you are a student at J.C. Bose UST YMCA or another college, all tech enthusiasts, designers, developers, and beginners are warmly welcomed. Teams can be 1 or 2 members.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Do I need to know Figma or have prior design experience?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Absolutely NOT! The beauty of this competition is that bad design is the goal. If you have never used Figma before, your mistakes might actually become your winning features. You can also use Canva, Google Slides, HTML/CSS, or even hand-drawn sketches!</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Is Generative AI really allowed?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Yes, 100%! You can use ChatGPT, Gemini, Midjourney, v0, Claude, or any AI assistant to generate chaotic copy, hilariously broken imagery, or absurd interactive code.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Is there any registration fee?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>No! The event is completely FREE of cost, organized by Google Developer Groups (GDG) to celebrate humor, design thinking, and creativity.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>How does peer judging work?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>At the end of the 90-minute design sprint, all participants will tour each other's submissions and cast votes across standardized categories (Frustration Factor, Comic Genius, Usability Chaos). This ensures transparent, democratic, and fun evaluations!</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>What do winners receive?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Winners receive exciting prizes, GDG swag and goodies, and all participants receive official Google Developer Groups certificates of participation to boost their portfolio!</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Where is the event venue?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>The event will take place on <strong>2 November 2026</strong> at the <strong>Computer Centre, J.C. Bose University of Science and Technology, YMCA, Faridabad</strong>.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="modal-cta-box" style="margin-top: 2rem;">
+          <div>
+            <strong>Still have questions?</strong>
+            <p>Reach out to the GDG team or submit your registration directly.</p>
+          </div>
+          <a href="https://forms.gle/WNKL94UAcj32yx446" target="_blank" rel="noopener noreferrer" class="btn-hero-primary">
+            GO TO REGISTRATION FORM ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "glitches-and-giggles-gdg",
+  "version": "1.0.0",
+  "description": "Glitches and Giggles: The Worst UI/UX Challenge landing page presented by Google Developer Groups (GDG)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["gdg", "ui-ux", "hackathon", "bad-design", "challenge"],
+  "author": "Google Developer Groups",
+  "license": "MIT"
+}
